@@ -34,7 +34,7 @@ The goal of a build phase is to compile or lint the source code to check for syn
 - Throughout this project, you should have separate jobs for the front-end and back-end so that failure alerts are more descriptive.
 - Jobs should fail if code cannot be compiled (fail for the right reasons), and **a failed build should stop all future jobs.** 
 - We have provided an easy-to-fix compile error in the code to prove the jobs fail. Provide a screenshot of jobs that failed because of compile errors. **[SCREENSHOT01]**
-![Job properly failing because of compile errors.](screenshots/SCREENSHOT01.png)
+![Job properly failing because of compile errors.](../workflow_screenshots/backend-build-error.png)
 - Fix the compile error so that the pipeline can continue (see code-comment that guides you to the fix).
 
 #### 2. Test Phase
