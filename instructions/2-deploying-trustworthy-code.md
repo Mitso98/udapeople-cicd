@@ -47,7 +47,7 @@ Unit tests are one of the many very important building blocks of a system that e
 - Remember, we separate the frontend and backend into separate jobs!
 - A unit test job should fail the job and prevent any future jobs from running.
 - We have provided one failing test in both front-end and back-end. Provide a screenshot of the failed unit tests in the "Test Failures" tab. **[SCREENSHOT02]**
-![Job properly failing because of test failures.](screenshots/SCREENSHOT02.png)
+![Job properly failing because of test failures.](../workflow_screenshots/test-err.png)
 - Fix the unit tests and make the job succeed.
 
 #### 3. Analyze Phase
