@@ -1,11 +1,11 @@
 ---
-# - name: copy dist backend folder to ec2 server
-#   become: yes
-#   copy:
-#     src: ~/project/artifact.tar.gz
-#     dest: /home/ubuntu/artifact.tar.gz
+- name: copy file to EC2
+  become: yes
+  template:
+    src: files/artifact.tar.gz
+    dest: /home/ubuntu/artifact.tar.gz
 
-- name: "Unarchive backend files"
+- name: Unarchive backend files
   unarchive:
     src: artifact.tar.gz
     dest: /home/ubuntu/
@@ -14,7 +14,7 @@
   become: true
   shell: |
     cd /home/ubuntu/backend
-    pm2 start main.js
+    pm2 start main.js -f
 
 # ---
 # - name: "Creates backend app directory"
