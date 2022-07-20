@@ -246,7 +246,6 @@ jobs:
             curl -sL https://rpm.nodesource.com/setup_13.x | sudo bash -
             yum install -y nodejs
             node --version
-
             cd frontend
             npm install
       - run:
@@ -262,7 +261,6 @@ jobs:
           name: Deploy frontend objects
           command: |
             cd frontend
-            npm i
             npm run build
             aws s3 cp dist s3://udapeople-bucket-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure
@@ -271,10 +269,9 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: python:3.10.5-alpine3.16
+      - image: amazon/aws-cli
     steps:
       - checkout
-      - aws-cli/setup
       - add_ssh_keys:
           fingerprints: ["41:0a:b2:e3:29:d7:8a:6b:36:be:69:b4:52:59:57:3d"]
       - attach_workspace:
@@ -284,11 +281,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update git ansible aws-cli tar gzip
-            curl -sL https://rpm.nodesource.com/setup_13.x
+            yum install -y curl tar sudo
+            curl -sL https://rpm.nodesource.com/setup_13.x | sudo bash -
+            yum install -y nodejs
             node --version
-            npm --version
-            apk update
       - run:
           name: Deploy backend
           command: |
@@ -386,6 +382,8 @@ workflows:
       #     requires: [run-migrations]
       - deploy-backend:
           requires: [build-backend]
+      # - deploy-backend:
+      #     requires: [run-migrations]
 #       - smoke-test:
 #           requires: [deploy-backend, deploy-frontend]
 #       - cloudfront-update:
