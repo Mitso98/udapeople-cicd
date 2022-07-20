@@ -295,7 +295,7 @@ jobs:
             ls
             cd ../
             tar -czf artifact.tar.gz backend/dist/* package*
-            cp artifact.tar.gz ../.circleci/ansible/roles/deploy/files
+            cp backend/artifact.tar.gz ../.circleci/ansible/roles/deploy/files
             ansible-playbook -i ../.circleci/ansible/inventory.txt deploy-backend.yml
       # Here's where you will add some code to rollback on failure
       - destroy-environment:
