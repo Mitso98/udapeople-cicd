@@ -290,7 +290,6 @@ jobs:
           command: |
             cd backend
             npm i
-            npm i tsc
             npm run build
             tar -czf artifact.tar.gz dist/* package*
             cd ..
