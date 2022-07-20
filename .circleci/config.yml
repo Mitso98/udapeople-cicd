@@ -262,6 +262,7 @@ jobs:
           name: Deploy frontend objects
           command: |
             cd frontend
+            npm i
             npm run build
             aws s3 cp dist s3://udapeople-bucket-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure
@@ -288,6 +289,8 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
+            npm i
+            npm i tsc
             npm run build
             tar -czf artifact.tar.gz dist/* package*
             cd ..
