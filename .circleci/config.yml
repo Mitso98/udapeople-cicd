@@ -216,6 +216,7 @@ jobs:
           name: Run migrations
           command: |
             cd backend
+            printenv
             npm i
             npm i typescript
             npm run migrations > migrations_dump.txt
