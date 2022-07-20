@@ -219,48 +219,52 @@ jobs:
             npm i
             npm i typescript
             npm run migrations > migrations_dump.txt
-            cat migrations_dump.txt
+            echo migrations_dump.txt
       - run:
           name: Send migration results to kvdb
           command: |
+            npm i curl
             if grep -q "has been executed successfully"  ./backend/migrations_dump.txt 
             then
-            echo "huraaaaaaaaaaaaaay"
-            # curl "https://kvdb.io/${KVDB_API}/migration-${CIRCLE_WORKFLOW_ID:0:7}" \
-            # -d "http://${backend_url}:3030" -d "1"
-            # else
-            # curl "https://kvdb.io/${KVDB_API}/migration-${CIRCLE_WORKFLOW_ID:0:7}" \
-            # -d "http://${backend_url}:3030" -d "0"
+            curl "https://kvdb.io/${KVDB_API}/migration-${CIRCLE_WORKFLOW_ID:0:7}" \
+              -d "http://${backend_url}:3030" -d "1"
+            else
+            curl "https://kvdb.io/${KVDB_API}/migration-${CIRCLE_WORKFLOW_ID:0:7}" \
+              -d "http://${backend_url}:3030" -d "0"
             fi
       - revert-migrations
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
-  # deploy-frontend:
-  #   docker:
-  #     - image: circleci/node:13.8.0
-  #   steps:
-  #     - checkout
-  #     - aws-cli/setup
-  #     - run:
-  #         name: Install dependencies
-  #         command: |
-  #           cd frontend
-  #           npm install
-  #     - run:
-  #         name: Get backend url
-  #         command: |
-  #           BACKEND_IP=$(aws ec2 describe-instances \
-  #             --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
-  #             --query 'Reservations[*].Instances[*].PublicIpAddress' \
-  #             --output text)
-  #           export API_URL="http://${BACKEND_IP}:3030"
-  #           echo "${API_URL}"
-  #     - run:
-  #         name: Deploy frontend objects
-  #         command: |
-  #           # your code here
+  deploy-frontend:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - aws-cli/setup
+      - run:
+          name: Install dependencies
+          command: |
+            cd frontend
+            npm install
+      - run:
+          name: Get backend url
+          command: |
+            BACKEND_IP=$(aws ec2 describe-instances \
+              --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+              --query 'Reservations[*].Instances[*].PublicIpAddress' \
+              --output text)
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "${API_URL}"
+      - run:
+          name: Deploy frontend objects
+          command: |
+            cd frontend
+            npm run build
+            aws s3 cp dist s3://udapeople-bucket-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       # Here's where you will add some code to rollback on failure
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
 #   deploy-backend:
 #     docker:
@@ -339,27 +343,27 @@ jobs:
 workflows:
   default:
     jobs:
-      # - build-frontend
-      # - build-backend
-      # - test-frontend:
-      #     requires: [build-frontend]
-      # - test-backend:
-      #     requires: [build-backend]
-      # - scan-backend:
-      #     requires: [build-backend]
-      # - scan-frontend:
-      #     requires: [build-frontend]
-      # - deploy-infrastructure:
-      #     requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-      #     filters:
-      #       branches:
-      #         only: [test-feature-branch]
-      # - configure-infrastructure:
-      #     requires: [deploy-infrastructure]
-      - run-migrations
-      #    requires: [configure-infrastructure]
-      # - deploy-frontend:
-      #     requires: [run-migrations]
+      - build-frontend
+      - build-backend
+      - test-frontend:
+          requires: [build-frontend]
+      - test-backend:
+          requires: [build-backend]
+      - scan-backend:
+          requires: [build-backend]
+      - scan-frontend:
+          requires: [build-frontend]
+      - deploy-infrastructure:
+          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+          filters:
+            branches:
+              only: [test-feature-branch]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
+      - deploy-frontend:
+          requires: [run-migrations]
 #       - deploy-backend:
 #           requires: [run-migrations]
 #       - smoke-test:
