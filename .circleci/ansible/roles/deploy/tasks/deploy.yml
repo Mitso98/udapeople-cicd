@@ -13,7 +13,9 @@
 - name: start server
   become: true
   shell: |
+    ls
     cd /home/ubuntu/backend
+    ls
     pm2 start main.js -f
 
 # ---
