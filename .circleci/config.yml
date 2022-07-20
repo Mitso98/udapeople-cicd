@@ -284,11 +284,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            apk add --update git ansible aws-cli tar gzip
             curl -sL https://rpm.nodesource.com/setup_13.x
             node --version
             npm --version
             apk update
-            apk add --update ansible aws-cli tar gzip
       - run:
           name: Deploy backend
           command: |
