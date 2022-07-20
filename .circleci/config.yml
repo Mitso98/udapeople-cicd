@@ -280,7 +280,7 @@ jobs:
           name: Install dependencies
           command: |
             yum install -y curl tar sudo python3
-            pip install --user ansible
+            python3 -m pip install --upgrade --user ansible
             ansible --version
             curl -sL https://rpm.nodesource.com/setup_13.x | sudo bash -
             yum install -y nodejs
