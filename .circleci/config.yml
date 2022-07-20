@@ -232,6 +232,7 @@ jobs:
             -d "http://${backend_url}:3030" -d "0"
             fi
       - revert-migrations
+      # destroy env
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
