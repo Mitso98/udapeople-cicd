@@ -8,5 +8,5 @@
   become: true
   shell: |
     cd /home/ubuntu/dist
-    pm2 start main.js -f
+    pm2 start npm -- run start
 
