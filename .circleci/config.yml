@@ -327,6 +327,7 @@ jobs:
       - run:
           name: Backend smoke test.
           command: |
+            echo $API_URL
             if curl -s $API_URL/api/status | grep "ok"
             then
               exit 0
@@ -344,8 +345,8 @@ jobs:
               exit 1
             fi
       # Here's where you will add some code to rollback on failure
-      - destroy-environment:
-          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      # - destroy-environment:
+      #     workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
 #   cloudfront-update:
 #     docker:
