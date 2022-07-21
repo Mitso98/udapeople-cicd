@@ -3,7 +3,7 @@
   become: yes
   template:
     src: /root/project/roles/deploy/files/artifact.tar.gz
-    dest: /home/ubuntu/artifact.tar.gz
+    dest: /home/ubuntu/
 
 - name: Unarchive backend files
   unarchive:
