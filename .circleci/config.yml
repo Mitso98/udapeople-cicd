@@ -303,6 +303,13 @@ jobs:
             ls
             cd .circleci
             ls
+            pwd
+            cd files
+            ls 
+            pwd
+            cd ../
+            cd ansible 
+            pwd ls
       # cp artifact.tar.gz .circleci/ansible/roles/deploy/files
       # ansible-playbook -i .circleci/ansible/inventory.txt .circleci/ansible/deploy-backend.yml -vvv
       #tar -czf artifact.tar.gz backend/dist/* package*
