@@ -1,8 +1,13 @@
 ---
+- name: debuging
+  shell: |
+    pwd
+    ls
+
 - name: copy file to EC2
   become: yes
   template:
-    src: /root/project/roles/deploy/files/artifact.tar.gz
+    src: /root/project/.circleci/ansible/roles/deploy/files/artifact.tar.gz
     dest: /home/ubuntu/
 
 - name: Unarchive backend files
