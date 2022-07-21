@@ -278,27 +278,27 @@ jobs:
       #     keys: [backend-build]
       # - attach_workspace:
       #     at: ~/
-      # - run:
-      #     name: Install dependencies
-      #     command: |
-      #       sudo apt update
-      #       sudo apt install software-properties-common -y
-      #       sudo add-apt-repository --yes --update ppa:ansible/ansible
-      #       sudo apt install ansible -y
-      #       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      #       unzip awscliv2.zip
-      #       sudo ./aws/install
-      #       curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-      #       sudo apt install -y nodejs
+      - run:
+          name: Install dependencies
+          command: |
+            sudo apt update
+            sudo apt install software-properties-common -y
+            sudo add-apt-repository --yes --update ppa:ansible/ansible
+            sudo apt install ansible -y
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            sudo ./aws/install
+            curl -fsSL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+            sudo apt install -y nodejs
       - run:
           name: Deploy backend
           command: |
             pwd
-            # cd backend
-            # npm i
-            # npm run build
+            cd backend
+            npm i
+            npm run build
             cd ../
-            # tar -C backend -czvf artifact.tar.gz .
+            tar -C backend -czvf artifact.tar.gz .
             pwd
             ls
             cd .circleci
