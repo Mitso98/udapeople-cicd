@@ -314,8 +314,13 @@ jobs:
             cd roles
             pwd
             ls
-
-      # /home/circleci/project/.circleci/ansible
+            cd deploy 
+            pwd
+            ls
+            cd files
+            pwd
+            ls
+      # /home/circleci/project/.circleci/ansible/roles
       # cp artifact.tar.gz .circleci/ansible/roles/deploy/files
       # ansible-playbook -i .circleci/ansible/inventory.txt .circleci/ansible/deploy-backend.yml -vvv
       #tar -czf artifact.tar.gz backend/dist/* package*
