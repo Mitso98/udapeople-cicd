@@ -1,9 +1,4 @@
 ---
-- name: debuging
-  shell: |
-    pwd
-    ls
-
 - name: copy file to EC2
   become: yes
   template:
