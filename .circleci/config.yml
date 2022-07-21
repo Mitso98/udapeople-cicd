@@ -298,9 +298,9 @@ jobs:
             npm run build
             tar -C backend -czvf artifact.tar.gz .
             cd ../
-#tar -czf artifact.tar.gz backend/dist/* package*
             cp backend/artifact.tar.gz .circleci/ansible/roles/deploy/files
             ansible-playbook -i .circleci/ansible/inventory.txt .circleci/ansible/deploy-backend.yml
+      #tar -czf artifact.tar.gz backend/dist/* package*
       # Here's where you will add some code to rollback on failure
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
