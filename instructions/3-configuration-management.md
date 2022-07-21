@@ -195,8 +195,8 @@ Assuming the smoke test came back clean, we should have a relatively high level 
 
 ![Successful promotion job.](screenshots/SCREENSHOT08.png)
 
-- Provide the public URL for your CloudFront distribution (aka, your production front-end). **[URL03]**
-- Provide the public URL for your back-end server in EC2. **[URL04]**
+- Provide the public URL for your CloudFront distribution (aka, your production front-end). **[https://d20vmppv6wbjc4.cloudfront.net]**
+- Provide the public URL for your back-end server in EC2. **[ec2-3-82-241-100.compute-1.amazonaws.com]**
 
 #### 6. Cleanup Phase
 
