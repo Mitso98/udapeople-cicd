@@ -126,7 +126,7 @@ Now that the infrastructure is up and running, it’s time to configure for depe
       - In a previous job, you created the back-end infrastructure and saved the IP address of the new EC2 instance. This is the IP address you will want to pull out and use here. If the IP address is "1.2.3.4", then the `API_URL` should be `https://1.2.3.4:3000`.
     - Run `npm run build` one last time so that the back-end url gets "baked" into the front-end.
     - Copy the files to your new S3 Bucket using AWS CLI (compiled front-end files can be found in a folder called `./dist`).
-- Provide the public URL for your S3 Bucket (aka, your front-end). **[URL02]**
+- Provide the public URL for your S3 Bucket (aka, your front-end). **[http://udapeople-bucket-b3b4c71.s3-website-us-east-1.amazonaws.com]**
 
 ##### Deploy Back-end
 
@@ -198,7 +198,7 @@ Assuming the smoke test came back clean, we should have a relatively high level 
 ![Successful promotion job.](screenshots/SCREENSHOT08.png)
 
 - Provide the public URL for your CloudFront distribution (aka, your production front-end). **[https://d2zyjy3drlqhty.cloudfront.net/#/employees]**
-- Provide the public URL for your back-end server in EC2. **[ec2-54-172-117-98.compute-1.amazonaws.com:3030/api/status]**
+- Provide the public URL for your back-end server in EC2. **[http://ec2-54-172-117-98.compute-1.amazonaws.com:3030/api/status]**
 
 #### 6. Cleanup Phase
 
@@ -220,7 +220,7 @@ The UdaPeople finance department likes it when your AWS bills are more or less t
       - Front-end stack
 - Provide a screenshot of the successful job. **[SCREENSHOT09]**
 
-![Successful cleanup job.](screenshots/SCREENSHOT09.png)
+![Successful cleanup job.](../workflow_screenshots/cleanup.png)
 
 #### Other Considerations
 
