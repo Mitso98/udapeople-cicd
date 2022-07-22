@@ -388,7 +388,7 @@ jobs:
       - run:
           name: Update cloudfront distribution
           command: |
-            if [ ! -z $OldWorkflowID ]
+            if [ -z $OldWorkflowID ]
             then
               aws cloudformation create-stack \
                 --template-file .circleci/files/cloudfront.yml \
