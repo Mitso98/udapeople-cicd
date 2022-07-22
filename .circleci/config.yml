@@ -385,6 +385,7 @@ jobs:
               --template-file .circleci/files/cloudfront.yml \
               --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}" \
               --stack-name "cloudfront-udapeople-${CIRCLE_WORKFLOW_ID:0:7}"
+      - revert-migrations
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
@@ -407,6 +408,9 @@ jobs:
               aws cloudformation delete-stack --stack-name "udapeople-backend-stack-${OldWorkflowID}"
               aws cloudformation delete-stack --stack-name "udapeople-frontend-stack-${OldWorkflowID}"
             fi
+      - revert-migrations
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
 workflows:
   default:
