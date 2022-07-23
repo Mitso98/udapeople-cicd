@@ -246,9 +246,14 @@ jobs:
             curl -sL https://rpm.nodesource.com/setup_13.x | sudo bash -
             yum install -y nodejs
             node --version
+      # - run:
+      #     name: Get backend url
+      #     command: |
       - run:
-          name: Get backend url
+          name: Deploy frontend objects
           command: |
+            echo ENVIRONMENT=production >> "frontend/.env"
+            echo NODE_ENV=production >> "frontend/.env"
             BACKEND_IP=$(aws ec2 describe-instances \
               --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
@@ -256,9 +261,6 @@ jobs:
             export API_URL="http://${BACKEND_IP}:3030"
             echo "API_URL=http://${BACKEND_IP}:3030" >> frontend/.env
             cat frontend/.env
-      - run:
-          name: Deploy frontend objects
-          command: |
             cd frontend
             npm i
             npm run build
@@ -330,15 +332,6 @@ jobs:
           name: Install dependencies
           command: |
             pip install awscli
-      - run:
-          name: Get backend url
-          command: |
-            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances \
-              --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
-              --query 'Reservations[*].Instances[*].PublicIpAddress' \
-              --output text)
-            export API_URL="http://${BACKEND_PUBLIC_IP}:3030"
-            echo $API_URL
       - run:
           name: Backend smoke test.
           no_output_timeout: 60m
