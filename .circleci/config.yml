@@ -422,7 +422,8 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
-            OldWorkflowID=`cat ~/id/OldWorkID.txt`
+            OldWorkflowID=`cat ~/OldWorkID.txt`
+            echo "Files with ${OldWorkflowID} ID will be deleted"
             if [ -z $OldWorkflowID ]
             then
               exit 0
