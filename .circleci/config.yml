@@ -377,7 +377,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum install -y curl
+            yum install -y tar gzip
       - run:
           name: Get WorkflowID
           command: |
