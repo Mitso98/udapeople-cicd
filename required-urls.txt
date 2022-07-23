@@ -5,8 +5,13 @@ s3:
 # this link is only ment for asessment.
 # if you are using this link from Github it might not be working.
 # Kindly only use it from the zip file.
-http://udapeople-bucket-4f4f149.s3-website-us-east-1.amazonaws.com
+http://udapeople-bucket-4ad0cef.s3-website-us-east-1.amazonaws.com
 
-# this will work any way
 CloudFront domain name URL:
-https://d2zyjy3drlqhty.cloudfront.net/#/employees
+http://d2zyjy3drlqhty.cloudfront.net/#/employees
+
+Backend:
+http://107.23.184.154:3030/api/employees
+
+prometheus:
+http://44.201.200.244:9090/targets
