@@ -1,8 +1,12 @@
 Github repo:
 https://github.com/Mostafa9898/udapeople-cicd
 
-s3:
-http://udapeople-bucket-b3b4c71.s3-website-us-east-1.amazonaws.com
+s3: 
+# this link is only ment for asessment.
+# if you are using this link from Github it might not be working.
+# Kindly only use it from the zip file.
+http://udapeople-bucket-4f4f149.s3-website-us-east-1.amazonaws.com
 
+# this will work any way
 CloudFront domain name URL:
 https://d2zyjy3drlqhty.cloudfront.net/#/employees
