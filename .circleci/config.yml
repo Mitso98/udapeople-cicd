@@ -386,7 +386,7 @@ jobs:
               --no-paginate --output text);
             echo $OldWorkflowID >> OldWorkID.txt
       - persist_to_workspace:
-          root: ~/id
+          root: ~/
           paths:
             - OldWorkID.txt
       - run:
@@ -418,7 +418,7 @@ jobs:
           command: |
             yum install -y tar gzip
       - attach_workspace:
-          at: ~/id
+          at: ~/
       - run:
           name: Remove old stacks and files
           command: |
