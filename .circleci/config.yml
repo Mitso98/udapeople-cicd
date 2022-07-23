@@ -415,6 +415,7 @@ jobs:
             if [ -z $OldWorkflowID ]
             then
               exit 0
+            fi
             echo "old workflow ID >> ${OldWorkflowID}"
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text));
