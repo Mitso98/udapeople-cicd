@@ -1,6 +1,3 @@
-[![CircleCI](https://circleci.com/gh/Mostafa9898/udapeople-cicd.svg?style=svg)](https://app.circleci.com/pipelines/github/Mostafa9898/udapeople-cicd)
-
-
 ## Give your Application Auto-Deploy Superpowers
 
 In this project, you will prove your mastery of the following learning objectives:
