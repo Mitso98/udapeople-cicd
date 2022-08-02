@@ -8,6 +8,8 @@ In this project, you will prove your mastery of the following learning objective
 - Surface critical server errors for diagnosis using centralized structured logging.
 
 ![Diagram of CI/CD Pipeline.](udapeople-pipeline.png)
+![Diagram of CI/CD Pipeline in CircleCi.](pipeline-1.png)
+![Diagram of CI/CD Pipeline in CircleCi.](pipeline-2.png)
 
 ### Built With
 
